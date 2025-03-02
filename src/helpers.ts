@@ -38,12 +38,20 @@ export function findJsonFiles(dir: string): string[] {
  */
 export function validateModuleFile(filePath: string): ModuleMetadata | null {
   try {
+    const pathWithoutDir = filePath.replace(/^(.*\/packages\/)/, "");
+
+    const [dir, name] = pathWithoutDir.split("/");
+
     // Read and parse the JSON file
     const content = fs.readFileSync(filePath, "utf-8");
     const data = JSON.parse(content);
 
     // Validate against our schema
     const result = moduleMetadataSchema.safeParse(data);
+
+    if (dir && name) {
+      result.data!.dir = dir;
+    }
 
     const isPro = filePath.includes("legend-kit-pro");
     if (isPro !== result.data!.pro) {

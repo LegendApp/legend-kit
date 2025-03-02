@@ -6,9 +6,10 @@
       "type": "converter",
       "dependencies": [],
       "files": [
-        "as/objectAsArray.ts"
+        "objectAsArray.ts"
       ],
-      "pro": false
+      "pro": false,
+      "dir": "as"
     },
     {
       "name": "arrayAsObject",
@@ -16,9 +17,10 @@
       "type": "converter",
       "dependencies": [],
       "files": [
-        "as/arrayAsObject.ts"
+        "arrayAsObject.ts"
       ],
-      "pro": false
+      "pro": false,
+      "dir": "as"
     },
     {
       "name": "isWindowFocused",

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "type": "converter",
   "dependencies": [],
-  "files": ["as/arrayAsObject.ts"],
+  "files": ["arrayAsObject.ts"],
   "pro": false
 }

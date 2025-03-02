@@ -36,6 +36,11 @@ export interface ModuleMetadata {
    * Is this module a Pro feature?
    */
   pro: boolean;
+
+  /**
+   * The directory of the module
+   */
+  dir?: string;
 }
 
 /**
