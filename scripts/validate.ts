@@ -4,18 +4,23 @@ import { execSync } from "child_process";
 import { findJsonFiles, validateModuleFile } from "../src/helpers";
 import { ModuleMetadata } from "../src/types";
 
-const Directories = ["../legend-kit", "../legend-kit-pro"];
+const Directories = [".", "../legend-kit-pro"];
 
 /**
  * Validates all module files in the given directory
  * @param sourceDirectory - Directory to search for JSON files
  * @returns Object containing validation status and validated modules
  */
-export function validateAllModules(...directories: string[]): {
+export function validateAllModules(): {
   isValid: boolean;
   modules: ModuleMetadata[];
 } {
   console.log("Validating all module files...");
+
+  const rootDir = path.join(__dirname, "..");
+  const directories = Directories.map((directory) =>
+    path.join(rootDir, directory, "packages"),
+  );
 
   // Find all JSON files in the directory
   const jsonFiles = directories.flatMap(findJsonFiles);
@@ -31,7 +36,6 @@ export function validateAllModules(...directories: string[]): {
     if (validatedModule) {
       validModules.push(validatedModule);
     } else {
-      console.log(`❌ ${file} is invalid`);
       invalidCount++;
     }
   }
@@ -85,14 +89,7 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  const rootDir = path.join(__dirname, "..");
-  const sourceDirectories = Directories.map((directory) =>
-    path.join(rootDir, directory, "packages"),
-  );
-
-  // Run all validations
-  const moduleValidation = validateAllModules(...sourceDirectories);
-
+  const moduleValidation = validateAllModules();
   // Exit with error code if any validation failed
   if (!moduleValidation.isValid) {
     process.exit(1);

@@ -45,6 +45,12 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
     // Validate against our schema
     const result = moduleMetadataSchema.safeParse(data);
 
+    const isPro = filePath.includes("legend-kit-pro");
+    if (isPro !== result.data!.pro) {
+      console.error(`❌ ${filePath} has a mismatching pro value`);
+      return null;
+    }
+
     if (!result.success) {
       console.error(`❌ ${filePath} is not valid:`);
       formatZodErrors(result.error, filePath);

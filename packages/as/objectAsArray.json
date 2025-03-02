@@ -1,0 +1,8 @@
+{
+  "name": "objectAsArray",
+  "version": "1.0.0",
+  "type": "converter",
+  "dependencies": [],
+  "files": ["as/objectAsArray.ts"],
+  "pro": false
+}
