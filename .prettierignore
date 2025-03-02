@@ -1,0 +1,18 @@
+# Build output
+dist/
+build/
+lib/
+
+# Generated files
+registry.json
+
+# Package managers
+node_modules/
+.pnpm-store/
+.npm
+yarn.lock
+package-lock.json
+
+# Misc
+.git/
+.DS_Store

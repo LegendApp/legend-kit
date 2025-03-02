@@ -1,0 +1,19 @@
+{
+  "name": "legend-kit",
+  "version": "1.0.0",
+  "description": "A modular toolkit for Legend",
+  "main": "index.js",
+  "scripts": {
+    "build": "bun run scripts/build.ts",
+    "validate": "bun run scripts/validate.ts",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,md}\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "prettier": "^3.1.0",
+    "typescript": "^4.9.3",
+    "zod": "^3.22.4"
+  }
+}

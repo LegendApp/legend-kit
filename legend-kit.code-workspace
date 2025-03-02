@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../legend-kit"
+    },
+    {
+      "path": "../legend-kit-pro"
+    }
+  ],
+  "settings": {}
+}

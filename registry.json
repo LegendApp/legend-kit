@@ -1,0 +1,94 @@
+{
+  "modules": [
+    {
+      "name": "createDraft",
+      "version": "1.0.0",
+      "type": "utility",
+      "dependencies": [],
+      "files": [
+        "createDraft.ts"
+      ]
+    },
+    {
+      "name": "onHotkeys",
+      "version": "1.0.0",
+      "type": "event",
+      "dependencies": [],
+      "files": [
+        "onHotkeys.ts"
+      ]
+    },
+    {
+      "name": "objectAsArray",
+      "version": "1.0.0",
+      "type": "converter",
+      "dependencies": [],
+      "files": [
+        "as/objectAsArray.ts"
+      ]
+    },
+    {
+      "name": "arrayAsObject",
+      "version": "1.0.0",
+      "type": "converter",
+      "dependencies": [],
+      "files": [
+        "as/arrayAsObject.ts"
+      ]
+    },
+    {
+      "name": "isWindowFocused",
+      "version": "1.0.0",
+      "type": "browser",
+      "dependencies": [],
+      "files": [
+        "isWindowFocused.ts"
+      ]
+    },
+    {
+      "name": "createDraft",
+      "version": "1.0.0",
+      "type": "utility",
+      "dependencies": [],
+      "files": [
+        "createDraft.ts"
+      ]
+    },
+    {
+      "name": "onHotkeys",
+      "version": "1.0.0",
+      "type": "event",
+      "dependencies": [],
+      "files": [
+        "onHotkeys.ts"
+      ]
+    },
+    {
+      "name": "objectAsArray",
+      "version": "1.0.0",
+      "type": "converter",
+      "dependencies": [],
+      "files": [
+        "as/objectAsArray.ts"
+      ]
+    },
+    {
+      "name": "arrayAsObject",
+      "version": "1.0.0",
+      "type": "converter",
+      "dependencies": [],
+      "files": [
+        "as/arrayAsObject.ts"
+      ]
+    },
+    {
+      "name": "isWindowFocused",
+      "version": "1.0.0",
+      "type": "browser",
+      "dependencies": [],
+      "files": [
+        "isWindowFocused.ts"
+      ]
+    }
+  ]
+}
