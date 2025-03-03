@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-03-03T12:22:11.339Z",
+  "updatedAt": "2025-03-03T13:05:56.368Z",
   "modules": [
     {
       "name": "isWindowFocused$",
@@ -8,12 +8,14 @@
       "platform": "web",
       "dependencies": [],
       "files": [
-        "isWindowFocused$.ts"
+        {
+          "path": "isWindowFocused$.ts",
+          "sha": "3ac8bbe867201ff33309a99ce6501f7391ad1e8af569137ab23d3525af57c8bb"
+        }
       ],
       "pro": false,
       "description": "An observable that is true if the window is focused",
-      "dir": "web",
-      "sha": "7975147d82b85655dea75f8922eb1b3b6bb3104adfae8ce7b378ec1f36ec8d3e"
+      "dir": "web"
     },
     {
       "name": "useElementScroll",
@@ -22,12 +24,14 @@
       "platform": "web",
       "dependencies": [],
       "files": [
-        "useElementScroll.ts"
+        {
+          "path": "useElementScroll.ts",
+          "sha": "424c6558dfcf57acfd63c4b017cb13568619ad034b5c22e1f267420520cac724"
+        }
       ],
       "pro": false,
       "description": "A hook that creates an observable with the scroll value of an element",
-      "dir": "web",
-      "sha": "59c5856af41f09ac0371ab704076e10f4c6962093ea5119eed0cda5371b4a133"
+      "dir": "web"
     },
     {
       "name": "useElementIsScrolled",
@@ -36,12 +40,14 @@
       "platform": "web",
       "dependencies": [],
       "files": [
-        "useElementIsScrolled.ts"
+        {
+          "path": "useElementIsScrolled.ts",
+          "sha": "c581d6c61177f56eae814bf1c824b66fb940bfa8f3ab2ff5efbc02487633c17b"
+        }
       ],
       "pro": false,
       "description": "A hook that creates an observable that is true if an element is scrolled",
-      "dir": "web",
-      "sha": "7d252868c3ad8027faadc063afefe4b319453072baddbda1561c6a261140a063"
+      "dir": "web"
     },
     {
       "name": "stringAsRecord",
@@ -50,12 +56,14 @@
       "platform": "all",
       "dependencies": [],
       "files": [
-        "stringAsRecord.ts"
+        {
+          "path": "stringAsRecord.ts",
+          "sha": "42eaa60e8e35a97cfeadd2ade75d154711897e9445902fc230d35e5fe685c86b"
+        }
       ],
       "pro": false,
       "description": "JSON parse a string as a record",
-      "dir": "as",
-      "sha": "6086e39d14588a286bb8965236590f3c23eaf2321cd26d95a132d2a95090e0c2"
+      "dir": "as"
     },
     {
       "name": "stringAsArray",
@@ -64,12 +72,14 @@
       "platform": "all",
       "dependencies": [],
       "files": [
-        "stringAsArray.ts"
+        {
+          "path": "stringAsArray.ts",
+          "sha": "c1faa82d9787f7a25b8283d3c806763456df90f253476c89d4d74801a72221e7"
+        }
       ],
       "pro": false,
       "description": "JSON parse a string as an array",
-      "dir": "as",
-      "sha": "a516f000c37142b948e0151efdbcb45d5f563cbcdcb8968ff21f2084b136d419"
+      "dir": "as"
     },
     {
       "name": "numberAsString",
@@ -78,12 +88,14 @@
       "platform": "all",
       "dependencies": [],
       "files": [
-        "numberAsString.ts"
+        {
+          "path": "numberAsString.ts",
+          "sha": "dadacc396adaf9216937905aa545dc2fbe3031331cb07ecbb67331ede1964b48"
+        }
       ],
       "pro": false,
       "description": "Convert a number to a string",
-      "dir": "as",
-      "sha": "23155eaecde961921f3d8021bb8be9b92dbd32b2b9648b8fa57493f02f1fc982"
+      "dir": "as"
     },
     {
       "name": "stringAsSet",
@@ -92,12 +104,14 @@
       "platform": "all",
       "dependencies": [],
       "files": [
-        "stringAsSet.ts"
+        {
+          "path": "stringAsSet.ts",
+          "sha": "bf509e5e6087c8bcd610c42c89e32218d095192b21350651f98de6fa591ade16"
+        }
       ],
       "pro": false,
       "description": "JSON parse a string as a set",
-      "dir": "as",
-      "sha": "9a6f3fd83e1aa8e591cc20a5970a4544db9c663381c977db15d7088bac3144d6"
+      "dir": "as"
     },
     {
       "name": "createDraft",
@@ -106,12 +120,14 @@
       "platform": "all",
       "dependencies": [],
       "files": [
-        "createDraft.ts"
+        {
+          "path": "createDraft.ts",
+          "sha": "382932903c2a55785c394592152925bb573a148db18450c252fbcee5dd5dc20b"
+        }
       ],
       "pro": true,
       "description": "Create a draft of a value",
-      "dir": "utilities",
-      "sha": "02cf0a0e4ca41633a040a86c7e0e3940a52dc94fb23369c9d3531ca56cf7596b"
+      "dir": "utilities"
     },
     {
       "name": "onHotkeys",
@@ -120,12 +136,14 @@
       "platform": "web",
       "dependencies": [],
       "files": [
-        "onHotkeys.ts"
+        {
+          "path": "onHotkeys.ts",
+          "sha": "9e31e7f2443516214b71ef6ef824f69fb5817dc94ffdf4fbe478663e37e1fe43"
+        }
       ],
       "pro": true,
       "description": "Listen for hotkeys",
-      "dir": "utilities",
-      "sha": "57596b524493011044181f058b51048a31f3c4fcc7e9210953e174fb4649e211"
+      "dir": "utilities"
     }
   ]
 }

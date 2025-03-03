@@ -41,7 +41,7 @@ export interface ModuleMetadata {
   /**
    * Array of files included in this module
    */
-  files: string[];
+  files: ModuleFile[];
 
   /**
    * Is this module a Pro feature?
@@ -52,11 +52,11 @@ export interface ModuleMetadata {
    * The directory of the module
    */
   dir?: string;
+}
 
-  /**
-   * The sha of the module
-   */
-  sha?: string;
+export interface ModuleFile {
+  path: string;
+  sha: string;
 }
 
 /**

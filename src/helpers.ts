@@ -35,10 +35,15 @@ export function findJsonFiles(dir: string): string[] {
 function calculateFileHash(filePath: string): string {
   try {
     const fileBuffer = fs.readFileSync(filePath);
+    // Convert to string and normalize line endings
+    const content = fileBuffer.toString().replace(/\r\n/g, "\n");
     const hashSum = createHash("sha256");
-    hashSum.update(fileBuffer);
-    return hashSum.digest("hex");
+    hashSum.update(content);
+
+    const hash = hashSum.digest("hex");
+    return hash;
   } catch (error) {
+    console.error(`❌ Error calculating hash for ${filePath}:`, error);
     return "";
   }
 }
@@ -71,21 +76,30 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
       return null;
     }
 
+    const moduleMetadata = JSON.parse(
+      JSON.stringify(result.data),
+    ) as unknown as ModuleMetadata;
+
     if (dir && name) {
-      result.data!.dir = dir;
+      moduleMetadata!.dir = dir;
+    } else {
+      throw new Error(`❌ ${filePath} has no directory`);
     }
-    result.data!.sha = calculateFileHash(filePath);
 
     const isPro = filePath.includes("legend-kit-pro");
-    if (isPro !== result.data!.pro) {
+    if (isPro !== moduleMetadata!.pro) {
       console.error(`❌ ${filePath} has a mismatching pro value`);
       return null;
     }
 
     // Check that all files in result.files exist
     const moduleDir = path.dirname(filePath);
-    for (const file of result.data.files) {
-      const fullPath = path.join(moduleDir, file);
+    moduleMetadata.files = result.data.files.map((file) => ({
+      path: file,
+      sha: calculateFileHash(path.join(moduleDir, file)),
+    }));
+    for (const file of moduleMetadata.files) {
+      const fullPath = path.join(moduleDir, file.path);
       if (!fs.existsSync(fullPath)) {
         console.error(
           `❌ ${filePath}: Referenced file "${file}" does not exist at ${fullPath}`,
@@ -94,7 +108,7 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
       }
     }
 
-    return result.data;
+    return moduleMetadata;
   } catch (error) {
     console.error(`❌ Error processing ${filePath}:`, error);
     return null;
@@ -130,15 +144,6 @@ export function validateJsonFile<T>(
     console.error(`❌ Error processing ${filePath}:`, error);
     return null;
   }
-}
-
-/**
- * Checks if a JSON file is valid as a ModuleMetadata
- * @param filePath - Path to the JSON file
- * @returns Boolean indicating if the file is valid
- */
-export function isModuleFileValid(filePath: string): boolean {
-  return validateModuleFile(filePath) !== null;
 }
 
 /**
