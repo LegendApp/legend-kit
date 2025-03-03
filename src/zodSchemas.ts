@@ -28,8 +28,10 @@ export const moduleMetadataSchema = z.object({
     message: "At least one file must be specified",
   }),
   pro: z.boolean(),
-  dir: z.string().optional(),
   description: z.string(),
+  // Added in build
+  dir: z.string().optional(),
+  sha: z.string().optional(),
 });
 
 // Define a Zod schema for Registry

@@ -52,6 +52,11 @@ export interface ModuleMetadata {
    * The directory of the module
    */
   dir?: string;
+
+  /**
+   * The sha of the module
+   */
+  sha?: string;
 }
 
 /**

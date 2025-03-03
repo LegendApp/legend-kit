@@ -3,6 +3,7 @@ import * as path from "path";
 import { z, ZodSchema, ZodError } from "zod";
 import { ModuleMetadata } from "./types";
 import { moduleMetadataSchema, registrySchema } from "./zodSchemas";
+import { createHash } from "crypto";
 
 /**
  * Function to recursively find all JSON files in a directory
@@ -29,6 +30,17 @@ export function findJsonFiles(dir: string): string[] {
   }
 
   return files;
+}
+
+function calculateFileHash(filePath: string): string {
+  try {
+    const fileBuffer = fs.readFileSync(filePath);
+    const hashSum = createHash("sha256");
+    hashSum.update(fileBuffer);
+    return hashSum.digest("hex");
+  } catch (error) {
+    return "";
+  }
 }
 
 /**
@@ -62,6 +74,7 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
     if (dir && name) {
       result.data!.dir = dir;
     }
+    result.data!.sha = calculateFileHash(filePath);
 
     const isPro = filePath.includes("legend-kit-pro");
     if (isPro !== result.data!.pro) {

@@ -11,7 +11,8 @@
       ],
       "pro": false,
       "description": "An observable that is true if the window is focused",
-      "dir": "web"
+      "dir": "web",
+      "sha": "7975147d82b85655dea75f8922eb1b3b6bb3104adfae8ce7b378ec1f36ec8d3e"
     },
     {
       "name": "useElementScroll",
@@ -24,7 +25,8 @@
       ],
       "pro": false,
       "description": "A hook that creates an observable with the scroll value of an element",
-      "dir": "web"
+      "dir": "web",
+      "sha": "59c5856af41f09ac0371ab704076e10f4c6962093ea5119eed0cda5371b4a133"
     },
     {
       "name": "useElementIsScrolled",
@@ -37,7 +39,8 @@
       ],
       "pro": false,
       "description": "A hook that creates an observable that is true if an element is scrolled",
-      "dir": "web"
+      "dir": "web",
+      "sha": "7d252868c3ad8027faadc063afefe4b319453072baddbda1561c6a261140a063"
     },
     {
       "name": "stringAsRecord",
@@ -50,7 +53,8 @@
       ],
       "pro": false,
       "description": "JSON parse a string as a record",
-      "dir": "as"
+      "dir": "as",
+      "sha": "6086e39d14588a286bb8965236590f3c23eaf2321cd26d95a132d2a95090e0c2"
     },
     {
       "name": "stringAsArray",
@@ -63,7 +67,8 @@
       ],
       "pro": false,
       "description": "JSON parse a string as an array",
-      "dir": "as"
+      "dir": "as",
+      "sha": "a516f000c37142b948e0151efdbcb45d5f563cbcdcb8968ff21f2084b136d419"
     },
     {
       "name": "numberAsString",
@@ -76,7 +81,8 @@
       ],
       "pro": false,
       "description": "Convert a number to a string",
-      "dir": "as"
+      "dir": "as",
+      "sha": "23155eaecde961921f3d8021bb8be9b92dbd32b2b9648b8fa57493f02f1fc982"
     },
     {
       "name": "stringAsSet",
@@ -89,7 +95,8 @@
       ],
       "pro": false,
       "description": "JSON parse a string as a set",
-      "dir": "as"
+      "dir": "as",
+      "sha": "9a6f3fd83e1aa8e591cc20a5970a4544db9c663381c977db15d7088bac3144d6"
     },
     {
       "name": "createDraft",
@@ -102,7 +109,8 @@
       ],
       "pro": true,
       "description": "Create a draft of a value",
-      "dir": "utilities"
+      "dir": "utilities",
+      "sha": "02cf0a0e4ca41633a040a86c7e0e3940a52dc94fb23369c9d3531ca56cf7596b"
     },
     {
       "name": "onHotkeys",
@@ -115,7 +123,8 @@
       ],
       "pro": true,
       "description": "Listen for hotkeys",
-      "dir": "utilities"
+      "dir": "utilities",
+      "sha": "57596b524493011044181f058b51048a31f3c4fcc7e9210953e174fb4649e211"
     }
   ]
 }
