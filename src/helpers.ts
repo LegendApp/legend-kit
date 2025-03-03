@@ -67,7 +67,7 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
 
     if (!result.success) {
       console.error(`❌ ${filePath} failed Zod schema`);
-      formatZodErrors(result.error, filePath);
+      formatZodErrors(result.error);
       return null;
     }
 
@@ -96,13 +96,19 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
     const moduleDir = path.dirname(filePath);
     moduleMetadata.files = result.data.files.map((file) => ({
       path: file,
-      sha: calculateFileHash(path.join(moduleDir, file)),
+      sha: calculateFileHash(
+        path.join(moduleDir, file.includes("/") ? ".." : "", file),
+      ),
     }));
     for (const file of moduleMetadata.files) {
-      const fullPath = path.join(moduleDir, file.path);
+      const fullPath = path.join(
+        moduleDir,
+        file.path.includes("/") ? ".." : "",
+        file.path,
+      );
       if (!fs.existsSync(fullPath)) {
         console.error(
-          `❌ ${filePath}: Referenced file "${file}" does not exist at ${fullPath}`,
+          `❌ ${filePath}: Referenced file "${file.path}" does not exist at ${fullPath}`,
         );
         return null;
       }
@@ -135,7 +141,7 @@ export function validateJsonFile<T>(
 
     if (!result.success) {
       console.error(`❌ ${filePath} is not valid:`);
-      formatZodErrors(result.error, filePath);
+      formatZodErrors(result.error);
       return null;
     }
 
@@ -181,7 +187,7 @@ export function validateRegistry(registry: any): boolean {
  * @param error - ZodError object
  * @param filePath - Path to the file that caused the error
  */
-function formatZodErrors(error: ZodError, filePath: string): void {
+function formatZodErrors(error: ZodError): void {
   error.issues.forEach((issue: z.ZodIssue) => {
     console.error(`  - Path: ${issue.path.join(".")}, Error: ${issue.message}`);
   });

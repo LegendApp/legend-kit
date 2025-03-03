@@ -1,4 +1,3 @@
-// Empty file for isWindowFocused
 import { observable } from "@legendapp/state";
 
 // Get current focus state of the window

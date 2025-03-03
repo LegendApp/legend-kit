@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-03-03T13:05:56.368Z",
+  "updatedAt": "2025-03-03T13:38:50.240Z",
   "modules": [
     {
       "name": "isWindowFocused$",
@@ -10,7 +10,7 @@
       "files": [
         {
           "path": "isWindowFocused$.ts",
-          "sha": "3ac8bbe867201ff33309a99ce6501f7391ad1e8af569137ab23d3525af57c8bb"
+          "sha": "2d34649a1fe9ecff54c599d865d0e871ca773855b1e4e9ee33c7e37514e20e85"
         }
       ],
       "pro": false,
@@ -122,11 +122,27 @@
       "files": [
         {
           "path": "createDraft.ts",
-          "sha": "382932903c2a55785c394592152925bb573a148db18450c252fbcee5dd5dc20b"
+          "sha": "a37b0ec061acd75907e315911231c01ab447cc5a7acfaa57eed6fd616cf4272d"
         }
       ],
       "pro": true,
       "description": "Create a draft of a value",
+      "dir": "utilities"
+    },
+    {
+      "name": "keysPressed$",
+      "version": "1.0.0",
+      "type": "observable",
+      "platform": "web",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "keysPressed$.ts",
+          "sha": "0cdfa3fd54038877fa17bdf39a213a605f2fc4a9504b5ab23d175e933dd9a277"
+        }
+      ],
+      "pro": true,
+      "description": "An observable containing all currently pressed keys",
       "dir": "utilities"
     },
     {
@@ -138,12 +154,52 @@
       "files": [
         {
           "path": "onHotkeys.ts",
-          "sha": "9e31e7f2443516214b71ef6ef824f69fb5817dc94ffdf4fbe478663e37e1fe43"
+          "sha": "8f231326b771d5c3938f6ad38adccb3adae9048ebc190970ddf594d1d98a1092"
         }
       ],
       "pro": true,
       "description": "Listen for hotkeys",
       "dir": "utilities"
+    },
+    {
+      "name": "useDraft",
+      "version": "1.0.0",
+      "type": "hook",
+      "platform": "all",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "useDraft.ts",
+          "sha": "32d21b660dc314efae8edb1241fe684bc7f65effbf1f2427ff5e0f4734b0c953"
+        },
+        {
+          "path": "utilities/createDraft.ts",
+          "sha": "a37b0ec061acd75907e315911231c01ab447cc5a7acfaa57eed6fd616cf4272d"
+        }
+      ],
+      "pro": true,
+      "description": "Hook version of createDraft",
+      "dir": "hooks"
+    },
+    {
+      "name": "useOnHotkeys",
+      "version": "1.0.0",
+      "type": "hook",
+      "platform": "web",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "useOnHotkeys.ts",
+          "sha": "a3ce6711933b6ad7d04b471a2198b9b4a8af37a0adfc92433517e168ca2a890e"
+        },
+        {
+          "path": "utilities/onHotkeys.ts",
+          "sha": "8f231326b771d5c3938f6ad38adccb3adae9048ebc190970ddf594d1d98a1092"
+        }
+      ],
+      "pro": true,
+      "description": "React hook to listen for hotkeys",
+      "dir": "hooks"
     }
   ]
 }
