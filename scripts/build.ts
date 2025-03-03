@@ -38,7 +38,10 @@ function buildRegistry(): void {
   }
 
   // Create the registry object directly from validated modules
-  const registry: Registry = { modules: modules };
+  const registry: Registry = {
+    updatedAt: new Date().toISOString(),
+    modules: modules,
+  };
 
   // Validate the entire registry
   if (!validateRegistry(registry)) {

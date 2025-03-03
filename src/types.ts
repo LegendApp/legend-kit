@@ -63,5 +63,6 @@ export interface ModuleMetadata {
  * Interface for the combined registry of all modules
  */
 export interface Registry {
+  updatedAt: string;
   modules: ModuleMetadata[];
 }
