@@ -1,0 +1,10 @@
+{
+  "name": "stringAsRecord",
+  "description": "JSON parse a string as a record",
+  "version": "1.0.0",
+  "type": "linked",
+  "platform": "all",
+  "dependencies": [],
+  "files": ["stringAsRecord.ts"],
+  "pro": false
+}

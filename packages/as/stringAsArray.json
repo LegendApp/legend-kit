@@ -1,0 +1,10 @@
+{
+  "name": "stringAsArray",
+  "description": "JSON parse a string as an array",
+  "version": "1.0.0",
+  "type": "linked",
+  "platform": "all",
+  "dependencies": [],
+  "files": ["stringAsArray.ts"],
+  "pro": false
+}

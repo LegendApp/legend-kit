@@ -1,8 +1,0 @@
-{
-  "name": "isWindowFocused",
-  "version": "1.0.0",
-  "type": "browser",
-  "dependencies": [],
-  "files": ["isWindowFocused.ts"],
-  "pro": false
-}

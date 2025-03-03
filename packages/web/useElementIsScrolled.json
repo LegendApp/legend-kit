@@ -1,0 +1,10 @@
+{
+  "name": "useElementIsScrolled",
+  "description": "A hook that creates an observable that is true if an element is scrolled",
+  "version": "1.0.0",
+  "type": "hook",
+  "platform": "web",
+  "dependencies": [],
+  "files": ["useElementIsScrolled.ts"],
+  "pro": false
+}

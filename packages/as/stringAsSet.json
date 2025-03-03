@@ -1,0 +1,10 @@
+{
+  "name": "stringAsSet",
+  "description": "JSON parse a string as a set",
+  "version": "1.0.0",
+  "type": "linked",
+  "platform": "all",
+  "dependencies": [],
+  "files": ["stringAsSet.ts"],
+  "pro": false
+}

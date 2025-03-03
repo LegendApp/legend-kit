@@ -1,7 +1,8 @@
 /**
  * Represents the module types available in the system
  */
-export type ModuleType = "utility" | "browser" | "event" | "converter";
+export type ModuleType = "linked" | "observable" | "hook" | "utility";
+export type ModulePlatform = "web" | "rn" | "all";
 
 /**
  * Interface describing the structure of a module's metadata
@@ -13,6 +14,11 @@ export interface ModuleMetadata {
   name: string;
 
   /**
+   * The name of the module
+   */
+  description: string;
+
+  /**
    * The version of the module in semver format (x.y.z)
    */
   version: string;
@@ -21,6 +27,11 @@ export interface ModuleMetadata {
    * The type of the module
    */
   type: ModuleType;
+
+  /**
+   * The platform of the module
+   */
+  platform: ModulePlatform;
 
   /**
    * Array of module dependencies

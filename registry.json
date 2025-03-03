@@ -1,56 +1,121 @@
 {
   "modules": [
     {
-      "name": "objectAsArray",
+      "name": "isWindowFocused$",
       "version": "1.0.0",
-      "type": "converter",
+      "type": "observable",
+      "platform": "web",
       "dependencies": [],
       "files": [
-        "objectAsArray.ts"
+        "isWindowFocused$.ts"
       ],
       "pro": false,
+      "description": "An observable that is true if the window is focused",
+      "dir": "web"
+    },
+    {
+      "name": "useElementScroll",
+      "version": "1.0.0",
+      "type": "hook",
+      "platform": "web",
+      "dependencies": [],
+      "files": [
+        "useElementScroll.ts"
+      ],
+      "pro": false,
+      "description": "A hook that creates an observable with the scroll value of an element",
+      "dir": "web"
+    },
+    {
+      "name": "useElementIsScrolled",
+      "version": "1.0.0",
+      "type": "hook",
+      "platform": "web",
+      "dependencies": [],
+      "files": [
+        "useElementIsScrolled.ts"
+      ],
+      "pro": false,
+      "description": "A hook that creates an observable that is true if an element is scrolled",
+      "dir": "web"
+    },
+    {
+      "name": "stringAsRecord",
+      "version": "1.0.0",
+      "type": "linked",
+      "platform": "all",
+      "dependencies": [],
+      "files": [
+        "stringAsRecord.ts"
+      ],
+      "pro": false,
+      "description": "JSON parse a string as a record",
       "dir": "as"
     },
     {
-      "name": "arrayAsObject",
+      "name": "stringAsArray",
       "version": "1.0.0",
-      "type": "converter",
+      "type": "linked",
+      "platform": "all",
       "dependencies": [],
       "files": [
-        "arrayAsObject.ts"
+        "stringAsArray.ts"
       ],
       "pro": false,
+      "description": "JSON parse a string as an array",
       "dir": "as"
     },
     {
-      "name": "isWindowFocused",
+      "name": "numberAsString",
       "version": "1.0.0",
-      "type": "browser",
+      "type": "linked",
+      "platform": "all",
       "dependencies": [],
       "files": [
-        "isWindowFocused.ts"
+        "numberAsString.ts"
       ],
-      "pro": false
+      "pro": false,
+      "description": "Convert a number to a string",
+      "dir": "as"
+    },
+    {
+      "name": "stringAsSet",
+      "version": "1.0.0",
+      "type": "linked",
+      "platform": "all",
+      "dependencies": [],
+      "files": [
+        "stringAsSet.ts"
+      ],
+      "pro": false,
+      "description": "JSON parse a string as a set",
+      "dir": "as"
     },
     {
       "name": "createDraft",
       "version": "1.0.0",
       "type": "utility",
+      "platform": "all",
       "dependencies": [],
       "files": [
         "createDraft.ts"
       ],
-      "pro": true
+      "pro": true,
+      "description": "Create a draft of a value",
+      "dir": "utilities"
     },
     {
       "name": "onHotkeys",
       "version": "1.0.0",
-      "type": "event",
+      "type": "utility",
+      "platform": "web",
       "dependencies": [],
       "files": [
         "onHotkeys.ts"
       ],
-      "pro": true
+      "pro": true,
+      "description": "Listen for hotkeys",
+      "dir": "utilities"
     }
   ]
 }

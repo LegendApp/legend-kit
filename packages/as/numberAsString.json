@@ -1,0 +1,10 @@
+{
+  "name": "numberAsString",
+  "description": "Convert a number to a string",
+  "version": "1.0.0",
+  "type": "linked",
+  "platform": "all",
+  "dependencies": [],
+  "files": ["numberAsString.ts"],
+  "pro": false
+}

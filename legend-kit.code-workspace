@@ -1,14 +1,11 @@
 {
-  "folders": [
-    {
-      "path": "."
-    },
-    {
-      "path": "../legend-kit"
-    },
-    {
-      "path": "../legend-kit-pro"
-    }
-  ],
-  "settings": {}
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "../legend-kit-assets-pro"
+        }
+    ],
+    "settings": {}
 }

@@ -1,0 +1,10 @@
+{
+  "name": "useElementScroll",
+  "description": "A hook that creates an observable with the scroll value of an element",
+  "version": "1.0.0",
+  "type": "hook",
+  "platform": "web",
+  "dependencies": [],
+  "files": ["useElementScroll.ts"],
+  "pro": false
+}

@@ -39,7 +39,6 @@ export function findJsonFiles(dir: string): string[] {
 export function validateModuleFile(filePath: string): ModuleMetadata | null {
   try {
     const pathWithoutDir = filePath.replace(/^(.*\/packages\/)/, "");
-
     const [dir, name] = pathWithoutDir.split("/");
 
     // Read and parse the JSON file
@@ -49,20 +48,37 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
     // Validate against our schema
     const result = moduleMetadataSchema.safeParse(data);
 
+    if (!result.success) {
+      console.error(`❌ ${filePath} failed Zod schema`);
+      formatZodErrors(result.error, filePath);
+      return null;
+    }
+
+    if (!dir) {
+      console.error(`❌ ${filePath} has no directory`);
+      return null;
+    }
+
     if (dir && name) {
       result.data!.dir = dir;
     }
 
-    const isPro = filePath.includes("legend-kit-pro");
+    const isPro = filePath.includes("legend-kit-assets-pro");
     if (isPro !== result.data!.pro) {
       console.error(`❌ ${filePath} has a mismatching pro value`);
       return null;
     }
 
-    if (!result.success) {
-      console.error(`❌ ${filePath} is not valid:`);
-      formatZodErrors(result.error, filePath);
-      return null;
+    // Check that all files in result.files exist
+    const moduleDir = path.dirname(filePath);
+    for (const file of result.data.files) {
+      const fullPath = path.join(moduleDir, file);
+      if (!fs.existsSync(fullPath)) {
+        console.error(
+          `❌ ${filePath}: Referenced file "${file}" does not exist at ${fullPath}`,
+        );
+        return null;
+      }
     }
 
     return result.data;

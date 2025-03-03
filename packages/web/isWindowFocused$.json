@@ -1,0 +1,10 @@
+{
+  "name": "isWindowFocused$",
+  "description": "An observable that is true if the window is focused",
+  "version": "1.0.0",
+  "type": "observable",
+  "platform": "web",
+  "dependencies": [],
+  "files": ["isWindowFocused$.ts"],
+  "pro": false
+}

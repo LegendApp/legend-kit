@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { findJsonFiles, validateModuleFile } from "../src/helpers";
 import { ModuleMetadata } from "../src/types";
 
-const Directories = [".", "../legend-kit-pro"];
+const Directories = [".", "../legend-kit-assets-pro"];
 
 /**
  * Validates all module files in the given directory
@@ -15,6 +15,12 @@ export function validateAllModules(): {
   isValid: boolean;
   modules: ModuleMetadata[];
 } {
+  try {
+    checkPrettierFormatting();
+  } catch (error) {
+    process.exit(1);
+  }
+
   console.log("Validating all module files...");
 
   const rootDir = path.join(__dirname, "..");
@@ -83,12 +89,6 @@ export function checkPrettierFormatting(): boolean {
 
 // Script execution when run directly
 if (require.main === module) {
-  try {
-    checkPrettierFormatting();
-  } catch (error) {
-    process.exit(1);
-  }
-
   const moduleValidation = validateAllModules();
   // Exit with error code if any validation failed
   if (!moduleValidation.isValid) {
