@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { findJsonFiles, validateModuleFile } from "../src/helpers";
 import { ModuleMetadata } from "../src/types";
 
-const Directories = [".", "../legend-kit-assets-pro"];
+const Directories = [".", "../legend-kit-pro"];
 
 /**
  * Validates all module files in the given directory

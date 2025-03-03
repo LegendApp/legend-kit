@@ -63,7 +63,7 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
       result.data!.dir = dir;
     }
 
-    const isPro = filePath.includes("legend-kit-assets-pro");
+    const isPro = filePath.includes("legend-kit-pro");
     if (isPro !== result.data!.pro) {
       console.error(`❌ ${filePath} has a mismatching pro value`);
       return null;
