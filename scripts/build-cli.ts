@@ -25,6 +25,8 @@ function buildCli(): void {
     name: packageJson.name,
     version: packageJson.version,
     description: packageJson.description,
+    private: false,
+    sideEffects: false,
     main: "cli.js",
     type: "module",
     bin: {
