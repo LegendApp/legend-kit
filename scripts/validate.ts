@@ -1,17 +1,17 @@
 import * as fs from "fs";
 import * as path from "path";
 import { execSync } from "child_process";
-import { findJsonFiles, validateModuleFile } from "../src/helpers";
-import { ModuleMetadata } from "../src/types";
+import { findJsonFiles, validatePackageFile } from "../src/helpers";
+import { PackageMetadata } from "../src/types";
 
 const Directories = [".", "../legend-kit-pro"];
 
 /**
- * Checks if a TypeScript file imports from other modules
+ * Checks if a TypeScript file imports from other packages
  * @param filePath - Path to the TypeScript file
- * @returns Array of imported module paths
+ * @returns Array of imported package paths
  */
-function findModuleImports(filePath: string): string[] {
+function findPackageImports(filePath: string): string[] {
   const content = fs.readFileSync(filePath, "utf-8");
   const imports: string[] = [];
 
@@ -21,7 +21,7 @@ function findModuleImports(filePath: string): string[] {
 
   while ((match = importRegex.exec(content)) !== null) {
     const [, relativePath] = match;
-    // Convert the relative path to our module format
+    // Convert the relative path to our package format
     // Remove ./ or ../ prefix and .ts extension if present
     const normalizedPath = relativePath
       .replace(/^\.\.?\//, "")
@@ -33,25 +33,25 @@ function findModuleImports(filePath: string): string[] {
 }
 
 /**
- * Validates that a module's imports match its implementation
- * @param moduleFile - Path to the JSON module file
- * @param moduleData - Parsed module metadata
+ * Validates that a package's imports match its implementation
+ * @param packageFile - Path to the JSON package file
+ * @param packageData - Parsed package metadata
  * @returns true if imports are valid, false otherwise
  */
-function validateModuleImports(
-  moduleFile: string,
-  moduleData: ModuleMetadata,
+function validatePackageImports(
+  packageFile: string,
+  packageData: PackageMetadata,
 ): boolean {
-  const moduleDir = path.dirname(moduleFile);
-  const moduleBaseName = path.basename(moduleFile, ".json");
-  const implPath = path.join(moduleDir, moduleBaseName + ".ts");
+  const packageDir = path.dirname(packageFile);
+  const packageBaseName = path.basename(packageFile, ".json");
+  const implPath = path.join(packageDir, packageBaseName + ".ts");
 
   if (!fs.existsSync(implPath)) {
     return false; // This will be caught by the main validation
   }
 
-  const actualImports = findModuleImports(implPath);
-  const declaredImports = moduleData.imports || [];
+  const actualImports = findPackageImports(implPath);
+  const declaredImports = packageData.imports || [];
 
   // Check if all actual imports are declared
   const missingImports = actualImports.filter(
@@ -59,7 +59,7 @@ function validateModuleImports(
   );
   if (missingImports.length > 0) {
     console.error(
-      `❌ ${moduleFile}: Missing imports in JSON: ${missingImports.join(", ")}`,
+      `❌ ${packageFile}: Missing imports in JSON: ${missingImports.join(", ")}`,
     );
     return false;
   }
@@ -70,7 +70,7 @@ function validateModuleImports(
   );
   if (unusedImports.length > 0) {
     console.error(
-      `❌ ${moduleFile}: Unused imports in JSON: ${unusedImports.join(", ")}`,
+      `❌ ${packageFile}: Unused imports in JSON: ${unusedImports.join(", ")}`,
     );
     return false;
   }
@@ -79,13 +79,13 @@ function validateModuleImports(
 }
 
 /**
- * Validates all module files in the given directory
+ * Validates all package files in the given directory
  * @param sourceDirectory - Directory to search for JSON files
- * @returns Object containing validation status and validated modules
+ * @returns Object containing validation status and validated packages
  */
-export function validateAllModules(): {
+export function validateAllPackages(): {
   isValid: boolean;
-  modules: ModuleMetadata[];
+  packages: PackageMetadata[];
 } {
   try {
     checkPrettierFormatting();
@@ -93,7 +93,7 @@ export function validateAllModules(): {
     process.exit(1);
   }
 
-  console.log("Validating all module files...");
+  console.log("Validating all package files...");
 
   const rootDir = path.join(__dirname, "..");
   const directories = Directories.map((directory) =>
@@ -106,18 +106,18 @@ export function validateAllModules(): {
 
   // Track validation results
   let invalidCount = 0;
-  const validModules: ModuleMetadata[] = [];
+  const validPackages: PackageMetadata[] = [];
 
   // Validate each file
   for (const file of jsonFiles) {
-    const validatedModule = validateModuleFile(file);
-    if (validatedModule) {
+    const validatedPackage = validatePackageFile(file);
+    if (validatedPackage) {
       // Additional validation for imports
-      if (!validateModuleImports(file, validatedModule)) {
+      if (!validatePackageImports(file, validatedPackage)) {
         invalidCount++;
         continue;
       }
-      validModules.push(validatedModule);
+      validPackages.push(validatedPackage);
     } else {
       invalidCount++;
     }
@@ -125,15 +125,15 @@ export function validateAllModules(): {
 
   // Print summary
   console.log("\nValidation Summary:");
-  console.log(`✅ Valid: ${validModules.length}`);
+  console.log(`✅ Valid: ${validPackages.length}`);
   if (invalidCount > 0) {
     console.log(`❌ Invalid: ${invalidCount}`);
   }
 
-  // Return validation status and validated modules
+  // Return validation status and validated packages
   return {
     isValid: invalidCount === 0,
-    modules: validModules,
+    packages: validPackages,
   };
 }
 
@@ -166,9 +166,9 @@ export function checkPrettierFormatting(): boolean {
 
 // Script execution when run directly
 if (require.main === module) {
-  const moduleValidation = validateAllModules();
+  const packageValidation = validateAllPackages();
   // Exit with error code if any validation failed
-  if (!moduleValidation.isValid) {
+  if (!packageValidation.isValid) {
     process.exit(1);
   }
 }

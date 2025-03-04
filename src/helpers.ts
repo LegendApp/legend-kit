@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
 import { z, ZodSchema, ZodError } from "zod";
-import { ModuleMetadata } from "./types";
-import { moduleMetadataSchema, registrySchema } from "./zodSchemas";
+import { PackageMetadata } from "./types";
+import { packageMetadataSchema, registrySchema } from "./zodSchemas";
 import { createHash } from "crypto";
 
 /**
@@ -49,11 +49,11 @@ function calculateFileHash(filePath: string): string {
 }
 
 /**
- * Function to validate a JSON file as a ModuleMetadata
+ * Function to validate a JSON file as a PackageMetadata
  * @param filePath - Path to the JSON file
  * @returns Validated data or null if invalid
  */
-export function validateModuleFile(filePath: string): ModuleMetadata | null {
+export function validatePackageFile(filePath: string): PackageMetadata | null {
   try {
     const pathWithoutDir = filePath.replace(/^(.*\/packages\/)/, "");
     const [dir, name] = pathWithoutDir.split("/");
@@ -63,7 +63,7 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
     const data = JSON.parse(content);
 
     // Validate against our schema
-    const result = moduleMetadataSchema.safeParse(data);
+    const result = packageMetadataSchema.safeParse(data);
 
     if (!result.success) {
       console.error(`❌ ${filePath} failed Zod schema`);
@@ -76,58 +76,58 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
       return null;
     }
 
-    const moduleMetadata = JSON.parse(
+    const packageMetadata = JSON.parse(
       JSON.stringify(result.data),
-    ) as unknown as ModuleMetadata;
+    ) as unknown as PackageMetadata;
 
     if (dir && name) {
-      moduleMetadata!.dir = dir;
+      packageMetadata!.dir = dir;
     } else {
       throw new Error(`❌ ${filePath} has no directory`);
     }
 
     const isPro = filePath.includes("legend-kit-pro");
-    if (isPro !== moduleMetadata!.pro) {
+    if (isPro !== packageMetadata!.pro) {
       console.error(`❌ ${filePath} has a mismatching pro value`);
       return null;
     }
 
-    // Check that the module's implementation file exists
-    const moduleDir = path.dirname(filePath);
-    const moduleBaseName = path.basename(filePath, ".json");
-    const tsPath = path.join(moduleDir, moduleBaseName + ".ts");
-    const tsxPath = path.join(moduleDir, moduleBaseName + ".tsx");
+    // Check that the package's implementation file exists
+    const packageDir = path.dirname(filePath);
+    const packageBaseName = path.basename(filePath, ".json");
+    const tsPath = path.join(packageDir, packageBaseName + ".ts");
+    const tsxPath = path.join(packageDir, packageBaseName + ".tsx");
 
     if (fs.existsSync(tsPath)) {
-      moduleMetadata.file = moduleBaseName + ".ts";
+      packageMetadata.file = packageBaseName + ".ts";
     } else if (fs.existsSync(tsxPath)) {
-      moduleMetadata.file = moduleBaseName + ".tsx";
+      packageMetadata.file = packageBaseName + ".tsx";
     } else {
       console.error(
-        `❌ ${filePath}: Implementation file "${moduleBaseName}.ts(x)" does not exist`,
+        `❌ ${filePath}: Implementation file "${packageBaseName}.ts(x)" does not exist`,
       );
       return null;
     }
 
-    moduleMetadata.sha = calculateFileHash(
-      path.join(moduleDir, moduleMetadata.file),
+    packageMetadata.sha = calculateFileHash(
+      path.join(packageDir, packageMetadata.file),
     );
 
-    // Check that all imported modules exist
-    if (moduleMetadata.imports) {
-      for (const importPath of moduleMetadata.imports) {
-        const fullPath1 = path.join(moduleDir, importPath + ".ts");
-        const fullPath2 = path.join(moduleDir, "..", importPath + ".ts");
+    // Check that all imported packages exist
+    if (packageMetadata.imports) {
+      for (const importPath of packageMetadata.imports) {
+        const fullPath1 = path.join(packageDir, importPath + ".ts");
+        const fullPath2 = path.join(packageDir, "..", importPath + ".ts");
         if (!fs.existsSync(fullPath1) && !fs.existsSync(fullPath2)) {
           console.error(
-            `❌ ${filePath}: Imported module "${importPath}" does not exist at ${fullPath1} or ${fullPath2}`,
+            `❌ ${filePath}: Imported package "${importPath}" does not exist at ${fullPath1} or ${fullPath2}`,
           );
           return null;
         }
       }
     }
 
-    return moduleMetadata;
+    return packageMetadata;
   } catch (error) {
     console.error(`❌ Error processing ${filePath}:`, error);
     return null;

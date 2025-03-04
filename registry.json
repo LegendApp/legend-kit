@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2025-03-04T02:14:01.291Z",
-  "modules": [
+  "updatedAt": "2025-03-04T02:39:03.972Z",
+  "packages": [
     {
       "name": "isWindowFocused$",
       "version": "1.0.0",

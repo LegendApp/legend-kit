@@ -1,55 +1,55 @@
 /**
- * Represents the module types available in the system
+ * Represents the package types available in the system
  */
-export type ModuleType = "linked" | "observable" | "hook" | "utility";
-export type ModulePlatform = "web" | "rn" | "all";
+export type PackageType = "linked" | "observable" | "hook" | "utility";
+export type PackagePlatform = "web" | "rn" | "all";
 
 /**
- * Interface describing the structure of a module's metadata
+ * Interface describing the structure of a package's metadata
  */
-export interface ModuleMetadata {
+export interface PackageMetadata {
   /**
-   * The name of the module
+   * The name of the package
    */
   name: string;
 
   /**
-   * The name of the module
+   * The name of the package
    */
   description: string;
 
   /**
-   * The version of the module in semver format (x.y.z)
+   * The version of the package in semver format (x.y.z)
    */
   version: string;
 
   /**
-   * The type of the module
+   * The type of the package
    */
-  type: ModuleType;
+  type: PackageType;
 
   /**
-   * The platform of the module
+   * The platform of the package
    */
-  platform: ModulePlatform;
+  platform: PackagePlatform;
 
   /**
-   * Array of module dependencies
+   * Array of package dependencies
    */
   dependencies: string[];
 
   /**
-   * Optional array of modules this module imports
+   * Optional array of packages this package imports
    */
   imports?: string[];
 
   /**
-   * Is this module a Pro feature?
+   * Is this package a Pro feature?
    */
   pro: boolean;
 
   /**
-   * The directory of the module
+   * The directory of the package
    */
   dir?: string;
 
@@ -64,15 +64,15 @@ export interface ModuleMetadata {
   sha?: string;
 }
 
-export interface ModuleFile {
+export interface PackageFile {
   path: string;
   sha: string;
 }
 
 /**
- * Interface for the combined registry of all modules
+ * Interface for the combined registry of all packages
  */
 export interface Registry {
   updatedAt: string;
-  modules: ModuleMetadata[];
+  packages: PackageMetadata[];
 }

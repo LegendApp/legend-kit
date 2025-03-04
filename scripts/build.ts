@@ -2,32 +2,34 @@ import * as fs from "fs";
 import * as path from "path";
 import { Registry } from "../src/types";
 import { arrayUniques, ax, validateRegistry } from "../src/helpers";
-import { validateAllModules } from "./validate";
+import { validateAllPackages } from "./validate";
 
-// Function to combine all JSON files into one registry
+/**
+ * Main build function to create the registry
+ */
 function buildRegistry(): void {
   const outputFilePath = path.join(__dirname, "../registry.json");
 
   console.log(`Building registry...`);
 
-  // First validate all modules
-  const { isValid, modules } = validateAllModules();
+  // First validate all packages
+  const { isValid, packages } = validateAllPackages();
 
-  const uniqueModules = arrayUniques(modules.map((module) => module.name));
+  const uniquePackages = arrayUniques(packages.map((pkg) => pkg.name));
 
-  if (uniqueModules.length !== modules.length) {
+  if (uniquePackages.length !== packages.length) {
     const alreadyFound = new Set<string>();
-    const dupes = modules
-      .filter((module) => {
-        if (alreadyFound.has(module.name)) {
+    const dupes = packages
+      .filter((pkg) => {
+        if (alreadyFound.has(pkg.name)) {
           return true;
         }
-        alreadyFound.add(module.name);
+        alreadyFound.add(pkg.name);
         return false;
       })
-      .map((module) => module.name);
+      .map((pkg) => pkg.name);
 
-    console.error("❌ Duplicate module names found:", dupes);
+    console.error("❌ Duplicate package names found:", dupes);
     process.exit(1);
   }
 
@@ -37,10 +39,10 @@ function buildRegistry(): void {
     process.exit(1);
   }
 
-  // Create the registry object directly from validated modules
+  // Create the registry object directly from validated packages
   const registry: Registry = {
     updatedAt: new Date().toISOString(),
-    modules: modules,
+    packages: packages,
   };
 
   // Validate the entire registry
@@ -54,7 +56,10 @@ function buildRegistry(): void {
 
   // Report results
   console.log(`\nBuild Summary:`);
-  console.log(`✅ Modules in registry: ${modules.length}`);
+  console.log(`✅ Packages in registry: ${packages.length}`);
 }
 
-buildRegistry();
+// Run the build when executed directly
+if (require.main === module) {
+  buildRegistry();
+}

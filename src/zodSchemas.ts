@@ -1,28 +1,28 @@
 import { z } from "zod";
-import { ModulePlatform, ModuleType } from "./types";
+import { PackagePlatform, PackageType } from "./types";
 
-// Define a Zod schema for ModuleType
-export const moduleTypeSchema = z.enum([
+// Define a Zod schema for PackageType
+export const packageTypeSchema = z.enum([
   "linked",
   "observable",
   "hook",
   "utility",
-]) as z.ZodType<ModuleType>;
+]) as z.ZodType<PackageType>;
 
-export const modulePlatformSchema = z.enum([
+export const packagePlatformSchema = z.enum([
   "web",
   "rn",
   "all",
-]) as z.ZodType<ModulePlatform>;
+]) as z.ZodType<PackagePlatform>;
 
-// Define a Zod schema for ModuleMetadata
-export const moduleMetadataSchema = z.object({
+// Define a Zod schema for PackageMetadata
+export const packageMetadataSchema = z.object({
   name: z.string(),
   version: z.string().regex(/^\d+\.\d+\.\d+$/, {
     message: "Version must be in semver format (x.y.z)",
   }),
-  type: moduleTypeSchema,
-  platform: modulePlatformSchema,
+  type: packageTypeSchema,
+  platform: packagePlatformSchema,
   dependencies: z.array(z.string()),
   imports: z.array(z.string()).optional(),
   pro: z.boolean(),
@@ -31,14 +31,14 @@ export const moduleMetadataSchema = z.object({
 
 // Define a Zod schema for Registry
 export const registrySchema = z.object({
-  modules: z.array(
+  packages: z.array(
     z.object({
       name: z.string(),
       version: z.string().regex(/^\d+\.\d+\.\d+$/, {
         message: "Version must be in semver format (x.y.z)",
       }),
-      type: moduleTypeSchema,
-      platform: modulePlatformSchema,
+      type: packageTypeSchema,
+      platform: packagePlatformSchema,
       dependencies: z.array(z.string()),
       imports: z.array(z.string()).optional(),
       pro: z.boolean(),
@@ -50,5 +50,5 @@ export const registrySchema = z.object({
 });
 
 // Export types inferred from our Zod schemas
-export type ZodModuleMetadata = z.infer<typeof moduleMetadataSchema>;
+export type ZodPackageMetadata = z.infer<typeof packageMetadataSchema>;
 export type ZodRegistry = z.infer<typeof registrySchema>;
