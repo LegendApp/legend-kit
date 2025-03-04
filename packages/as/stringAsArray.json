@@ -5,6 +5,6 @@
   "type": "linked",
   "platform": "all",
   "dependencies": [],
-  "files": ["stringAsArray.ts"],
+  "imports": [],
   "pro": false
 }

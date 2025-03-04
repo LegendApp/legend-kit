@@ -7,6 +7,78 @@ import { ModuleMetadata } from "../src/types";
 const Directories = [".", "../legend-kit-pro"];
 
 /**
+ * Checks if a TypeScript file imports from other modules
+ * @param filePath - Path to the TypeScript file
+ * @returns Array of imported module paths
+ */
+function findModuleImports(filePath: string): string[] {
+  const content = fs.readFileSync(filePath, "utf-8");
+  const imports: string[] = [];
+
+  // Match any relative imports (starting with ./ or ../)
+  const importRegex = /from\s+['"](\.[^'"]+)['"]/g;
+  let match;
+
+  while ((match = importRegex.exec(content)) !== null) {
+    const [, relativePath] = match;
+    // Convert the relative path to our module format
+    // Remove ./ or ../ prefix and .ts extension if present
+    const normalizedPath = relativePath
+      .replace(/^\.\.?\//, "")
+      .replace(/\.ts$/, "");
+    imports.push(normalizedPath);
+  }
+
+  return imports;
+}
+
+/**
+ * Validates that a module's imports match its implementation
+ * @param moduleFile - Path to the JSON module file
+ * @param moduleData - Parsed module metadata
+ * @returns true if imports are valid, false otherwise
+ */
+function validateModuleImports(
+  moduleFile: string,
+  moduleData: ModuleMetadata,
+): boolean {
+  const moduleDir = path.dirname(moduleFile);
+  const moduleBaseName = path.basename(moduleFile, ".json");
+  const implPath = path.join(moduleDir, moduleBaseName + ".ts");
+
+  if (!fs.existsSync(implPath)) {
+    return false; // This will be caught by the main validation
+  }
+
+  const actualImports = findModuleImports(implPath);
+  const declaredImports = moduleData.imports || [];
+
+  // Check if all actual imports are declared
+  const missingImports = actualImports.filter(
+    (imp) => !declaredImports.includes(imp),
+  );
+  if (missingImports.length > 0) {
+    console.error(
+      `❌ ${moduleFile}: Missing imports in JSON: ${missingImports.join(", ")}`,
+    );
+    return false;
+  }
+
+  // Check if all declared imports are actually used
+  const unusedImports = declaredImports.filter(
+    (imp) => !actualImports.includes(imp),
+  );
+  if (unusedImports.length > 0) {
+    console.error(
+      `❌ ${moduleFile}: Unused imports in JSON: ${unusedImports.join(", ")}`,
+    );
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * Validates all module files in the given directory
  * @param sourceDirectory - Directory to search for JSON files
  * @returns Object containing validation status and validated modules
@@ -40,6 +112,11 @@ export function validateAllModules(): {
   for (const file of jsonFiles) {
     const validatedModule = validateModuleFile(file);
     if (validatedModule) {
+      // Additional validation for imports
+      if (!validateModuleImports(file, validatedModule)) {
+        invalidCount++;
+        continue;
+      }
       validModules.push(validatedModule);
     } else {
       invalidCount++;

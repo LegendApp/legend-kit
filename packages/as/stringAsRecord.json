@@ -5,6 +5,6 @@
   "type": "linked",
   "platform": "all",
   "dependencies": [],
-  "files": ["stringAsRecord.ts"],
+  "imports": [],
   "pro": false
 }

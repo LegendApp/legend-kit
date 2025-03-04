@@ -5,6 +5,6 @@
   "type": "hook",
   "platform": "web",
   "dependencies": [],
-  "files": ["useElementScroll.ts"],
+  "imports": [],
   "pro": false
 }

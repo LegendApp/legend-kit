@@ -5,6 +5,6 @@
   "type": "linked",
   "platform": "all",
   "dependencies": [],
-  "files": ["numberAsString.ts"],
+  "imports": [],
   "pro": false
 }

@@ -5,6 +5,6 @@
   "type": "observable",
   "platform": "web",
   "dependencies": [],
-  "files": ["isWindowFocused$.ts"],
+  "imports": [],
   "pro": false
 }

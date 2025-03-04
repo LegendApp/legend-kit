@@ -5,6 +5,6 @@
   "type": "linked",
   "platform": "all",
   "dependencies": [],
-  "files": ["stringAsSet.ts"],
+  "imports": [],
   "pro": false
 }

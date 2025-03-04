@@ -24,9 +24,7 @@ export const moduleMetadataSchema = z.object({
   type: moduleTypeSchema,
   platform: modulePlatformSchema,
   dependencies: z.array(z.string()),
-  files: z.array(z.string()).min(1, {
-    message: "At least one file must be specified",
-  }),
+  imports: z.array(z.string()).optional(),
   pro: z.boolean(),
   description: z.string(),
 });
@@ -42,13 +40,7 @@ export const registrySchema = z.object({
       type: moduleTypeSchema,
       platform: modulePlatformSchema,
       dependencies: z.array(z.string()),
-      // Changed by the build script
-      files: z.array(
-        z.object({
-          path: z.string(),
-          sha: z.string(),
-        }),
-      ),
+      imports: z.array(z.string()).optional(),
       pro: z.boolean(),
       description: z.string(),
       // Added by the build script

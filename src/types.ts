@@ -39,9 +39,9 @@ export interface ModuleMetadata {
   dependencies: string[];
 
   /**
-   * Array of files included in this module
+   * Optional array of modules this module imports
    */
-  files: ModuleFile[];
+  imports?: string[];
 
   /**
    * Is this module a Pro feature?
@@ -52,6 +52,16 @@ export interface ModuleMetadata {
    * The directory of the module
    */
   dir?: string;
+
+  /**
+   * The implementation file name (.ts or .tsx)
+   */
+  file?: string;
+
+  /**
+   * The SHA of the implementation file
+   */
+  sha?: string;
 }
 
 export interface ModuleFile {

@@ -92,25 +92,38 @@ export function validateModuleFile(filePath: string): ModuleMetadata | null {
       return null;
     }
 
-    // Check that all files in result.files exist
+    // Check that the module's implementation file exists
     const moduleDir = path.dirname(filePath);
-    moduleMetadata.files = result.data.files.map((file) => ({
-      path: file,
-      sha: calculateFileHash(
-        path.join(moduleDir, file.includes("/") ? ".." : "", file),
-      ),
-    }));
-    for (const file of moduleMetadata.files) {
-      const fullPath = path.join(
-        moduleDir,
-        file.path.includes("/") ? ".." : "",
-        file.path,
+    const moduleBaseName = path.basename(filePath, ".json");
+    const tsPath = path.join(moduleDir, moduleBaseName + ".ts");
+    const tsxPath = path.join(moduleDir, moduleBaseName + ".tsx");
+
+    if (fs.existsSync(tsPath)) {
+      moduleMetadata.file = moduleBaseName + ".ts";
+    } else if (fs.existsSync(tsxPath)) {
+      moduleMetadata.file = moduleBaseName + ".tsx";
+    } else {
+      console.error(
+        `❌ ${filePath}: Implementation file "${moduleBaseName}.ts(x)" does not exist`,
       );
-      if (!fs.existsSync(fullPath)) {
-        console.error(
-          `❌ ${filePath}: Referenced file "${file.path}" does not exist at ${fullPath}`,
-        );
-        return null;
+      return null;
+    }
+
+    moduleMetadata.sha = calculateFileHash(
+      path.join(moduleDir, moduleMetadata.file),
+    );
+
+    // Check that all imported modules exist
+    if (moduleMetadata.imports) {
+      for (const importPath of moduleMetadata.imports) {
+        const fullPath1 = path.join(moduleDir, importPath + ".ts");
+        const fullPath2 = path.join(moduleDir, "..", importPath + ".ts");
+        if (!fs.existsSync(fullPath1) && !fs.existsSync(fullPath2)) {
+          console.error(
+            `❌ ${filePath}: Imported module "${importPath}" does not exist at ${fullPath1} or ${fullPath2}`,
+          );
+          return null;
+        }
       }
     }
 
@@ -185,7 +198,6 @@ export function validateRegistry(registry: any): boolean {
 /**
  * Helper function to format Zod errors for better readability
  * @param error - ZodError object
- * @param filePath - Path to the file that caused the error
  */
 function formatZodErrors(error: ZodError): void {
   error.issues.forEach((issue: z.ZodIssue) => {
