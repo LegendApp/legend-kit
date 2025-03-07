@@ -113,6 +113,9 @@ export function validatePackageFile(filePath: string): PackageMetadata | null {
       path.join(packageDir, packageMetadata.file),
     );
 
+    // Ensure the implementation file has the proper header comment
+    ensureHeaderComment(path.join(packageDir, packageMetadata.file), isPro);
+
     // Check that all imported packages exist
     if (packageMetadata.imports) {
       for (const importPath of packageMetadata.imports) {
@@ -218,4 +221,44 @@ export function ax<T>(...params: (T | boolean | "")[]): T[] {
 
 export function arrayUniques<T>(arrs: T[]): T[] {
   return Array.from(new Set(arrs));
+}
+
+/**
+ * Ensures that the implementation file has the proper Legend Kit header comment
+ */
+function ensureHeaderComment(filePath: string, isPro: boolean): void {
+  try {
+    // Read the file content
+    const content = fs.readFileSync(filePath, "utf-8");
+
+    // Define the header in a single template string with conditionals
+    const headerToUse = `/**
+ * Legend Kit - A collection of utilities for Legend State, Legend List, and Legend Motion
+ * https://legendapp.com/kit/
+ *${
+   isPro
+     ? `
+ * [PRO] This is a premium feature of Legend Kit
+ * Requires a Legend Kit Pro subscription to use in production
+ *`
+     : ""
+ }
+ * ${isPro ? "Part of the Legend Kit ecosystem" : "Open source package from the Legend Kit ecosystem"}
+ * See LICENSE file in https://github.com/LegendApp/legend-kit for more information
+ */
+`;
+
+    // Check if header is already present at the beginning of the file
+    if (!content.trimStart().startsWith("/**\n * Legend Kit")) {
+      // Header not found, prepend it to the content
+      const updatedContent =
+        headerToUse + (content.startsWith("\n") ? content : "\n" + content);
+
+      // Write the updated content back to the file
+      fs.writeFileSync(filePath, updatedContent, "utf-8");
+      console.log(`✅ Added header comment to ${filePath}`);
+    }
+  } catch (error) {
+    console.error(`❌ Error updating header in ${filePath}:`, error);
+  }
 }

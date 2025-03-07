@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-03-04T04:09:04.400Z",
+  "updatedAt": "2025-03-07T05:49:18.817Z",
   "packages": [
     {
       "name": "isWindowFocused$",
@@ -12,7 +12,7 @@
       "description": "An observable that is true if the window is focused",
       "dir": "web",
       "file": "isWindowFocused$.ts",
-      "sha": "2d34649a1fe9ecff54c599d865d0e871ca773855b1e4e9ee33c7e37514e20e85"
+      "sha": "0d03ada2d3fd14aca6332c051bc5166b3226c6b68fb2fee1fa7075d32a9a44b3"
     },
     {
       "name": "useElementScroll",
@@ -25,7 +25,7 @@
       "description": "A hook that creates an observable with the scroll value of an element",
       "dir": "web",
       "file": "useElementScroll.ts",
-      "sha": "424c6558dfcf57acfd63c4b017cb13568619ad034b5c22e1f267420520cac724"
+      "sha": "61d4d9185b51bd763e54ff1bb741aef3bede59958a2a5ec1e7b48955d5ad94e9"
     },
     {
       "name": "useElementIsScrolled",
@@ -38,7 +38,7 @@
       "description": "A hook that creates an observable that is true if an element is scrolled",
       "dir": "web",
       "file": "useElementIsScrolled.ts",
-      "sha": "c581d6c61177f56eae814bf1c824b66fb940bfa8f3ab2ff5efbc02487633c17b"
+      "sha": "2a087220ea3e323aa1804d20e42905bd39f737005de11174c06b6237274907da"
     },
     {
       "name": "stringAsRecord",
@@ -51,7 +51,7 @@
       "description": "JSON parse a string as a record",
       "dir": "as",
       "file": "stringAsRecord.ts",
-      "sha": "42eaa60e8e35a97cfeadd2ade75d154711897e9445902fc230d35e5fe685c86b"
+      "sha": "573d9aa6a305fec5ad358ab09c8b4b1bd876c5b700e17e7f732448d61e707011"
     },
     {
       "name": "stringAsArray",
@@ -64,7 +64,7 @@
       "description": "JSON parse a string as an array",
       "dir": "as",
       "file": "stringAsArray.ts",
-      "sha": "c1faa82d9787f7a25b8283d3c806763456df90f253476c89d4d74801a72221e7"
+      "sha": "c2db6960af1294e593b557e60287211c88419c62a3d602191ad11b361fc9d5ed"
     },
     {
       "name": "numberAsString",
@@ -77,7 +77,7 @@
       "description": "Convert a number to a string",
       "dir": "as",
       "file": "numberAsString.ts",
-      "sha": "dadacc396adaf9216937905aa545dc2fbe3031331cb07ecbb67331ede1964b48"
+      "sha": "86634225856cce9aadeb6dbd44af6826c036db79d643098b14de1fe43838a6ef"
     },
     {
       "name": "stringAsSet",
@@ -90,7 +90,7 @@
       "description": "JSON parse a string as a set",
       "dir": "as",
       "file": "stringAsSet.ts",
-      "sha": "bf509e5e6087c8bcd610c42c89e32218d095192b21350651f98de6fa591ade16"
+      "sha": "ca61670625964ff79a9ac9e4a1dc456ccf4a506e34f42b0ad673894b4c6394ac"
     },
     {
       "name": "createDraft",
@@ -103,7 +103,7 @@
       "description": "Create a draft state that can be committed or discarded",
       "dir": "utilities",
       "file": "createDraft.ts",
-      "sha": "a37b0ec061acd75907e315911231c01ab447cc5a7acfaa57eed6fd616cf4272d"
+      "sha": "21f7104a21d3e23186e19cce006a9858d0bfc6413ddb5f3ec6f575b558577db4"
     },
     {
       "name": "keysPressed$",
@@ -116,7 +116,7 @@
       "description": "An observable containing all currently pressed keys",
       "dir": "utilities",
       "file": "keysPressed$.ts",
-      "sha": "0cdfa3fd54038877fa17bdf39a213a605f2fc4a9504b5ab23d175e933dd9a277"
+      "sha": "6dbf9dfb3d270457d8353a85fd71f29815d5011fc26d30e6d7d3f1123d488ecc"
     },
     {
       "name": "onHotkeys",
@@ -131,7 +131,7 @@
       "description": "Listen for hotkeys",
       "dir": "utilities",
       "file": "onHotkeys.ts",
-      "sha": "8f231326b771d5c3938f6ad38adccb3adae9048ebc190970ddf594d1d98a1092"
+      "sha": "446197f418f33079f328c34571a92596cddd2037b49eb9882f9afddf7e3997ec"
     },
     {
       "name": "useDraft",
@@ -146,7 +146,7 @@
       "description": "A hook that creates a draft state that can be committed or discarded",
       "dir": "hooks",
       "file": "useDraft.ts",
-      "sha": "32d21b660dc314efae8edb1241fe684bc7f65effbf1f2427ff5e0f4734b0c953"
+      "sha": "2652f5b3415c4142c2326775a4eff93bc83ff95527092451b6f3fac214b3641e"
     },
     {
       "name": "useOnHotkeys",
@@ -161,7 +161,7 @@
       "description": "A hook that creates an observable with the scroll value of an element",
       "dir": "hooks",
       "file": "useOnHotkeys.ts",
-      "sha": "a3ce6711933b6ad7d04b471a2198b9b4a8af37a0adfc92433517e168ca2a890e"
+      "sha": "74152a73c8e2b65407804e5b76fecd88fc453e3f5b3914fc46e47df725173892"
     }
   ]
 }
