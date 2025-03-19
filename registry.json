@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-03-07T05:49:18.817Z",
+  "updatedAt": "2025-03-19T04:47:08.491Z",
   "packages": [
     {
       "name": "isWindowFocused$",
@@ -41,6 +41,34 @@
       "sha": "2a087220ea3e323aa1804d20e42905bd39f737005de11174c06b6237274907da"
     },
     {
+      "name": "windowDimensions",
+      "version": "1.0.0",
+      "type": "utility",
+      "platform": "rn",
+      "dependencies": [],
+      "imports": [
+        "react/HookToObservable"
+      ],
+      "pro": false,
+      "description": "Window dimensions as an observable",
+      "dir": "rn",
+      "file": "windowDimensions.tsx",
+      "sha": "b04f95ec27c125fac50b8c40c305c3d41c8e66ecb7dddefd4618920da1cc09da"
+    },
+    {
+      "name": "now",
+      "version": "1.0.0",
+      "type": "utility",
+      "platform": "all",
+      "dependencies": [],
+      "imports": [],
+      "pro": false,
+      "description": "Observables for current time, hour, and day",
+      "dir": "utilities",
+      "file": "now.ts",
+      "sha": "0625bfbe0f34c60aafeadebc9c31e12b22135f595578fc209ae92740dbdd2a8f"
+    },
+    {
       "name": "stringAsRecord",
       "version": "1.0.0",
       "type": "linked",
@@ -77,7 +105,7 @@
       "description": "Convert a number to a string",
       "dir": "as",
       "file": "numberAsString.ts",
-      "sha": "86634225856cce9aadeb6dbd44af6826c036db79d643098b14de1fe43838a6ef"
+      "sha": "831018ef07d93a7afe36a80e7aac57c24f343df37caef3561f2aa66eb8f1686b"
     },
     {
       "name": "stringAsSet",
@@ -91,6 +119,19 @@
       "dir": "as",
       "file": "stringAsSet.ts",
       "sha": "ca61670625964ff79a9ac9e4a1dc456ccf4a506e34f42b0ad673894b4c6394ac"
+    },
+    {
+      "name": "HookToObservable",
+      "version": "1.0.0",
+      "type": "utility",
+      "platform": "all",
+      "dependencies": [],
+      "imports": [],
+      "pro": false,
+      "description": "Convert a hook to an observable",
+      "dir": "react",
+      "file": "HookToObservable.tsx",
+      "sha": "463d2ec2195dc9912ab30ab2a13d963fa611b658fcfd518fe0a83d45b2d0809f"
     },
     {
       "name": "createDraft",
@@ -116,7 +157,7 @@
       "description": "An observable containing all currently pressed keys",
       "dir": "utilities",
       "file": "keysPressed$.ts",
-      "sha": "6dbf9dfb3d270457d8353a85fd71f29815d5011fc26d30e6d7d3f1123d488ecc"
+      "sha": "96954913f18f8ec1e78f2f82361b723db1a3e4cb8ffe614c2b5b5099a91372a7"
     },
     {
       "name": "onHotkeys",
@@ -162,6 +203,19 @@
       "dir": "hooks",
       "file": "useOnHotkeys.ts",
       "sha": "74152a73c8e2b65407804e5b76fecd88fc453e3f5b3914fc46e47df725173892"
+    },
+    {
+      "name": "useBreakpoints",
+      "version": "1.0.0",
+      "type": "hook",
+      "platform": "rn",
+      "dependencies": [],
+      "imports": [],
+      "pro": true,
+      "description": "A hook that returns the current breakpoint based on window width",
+      "dir": "hooks",
+      "file": "useBreakpoints.ts",
+      "sha": "fcb367117e65a3068bd33f2f833fe91d08868e7313cd08f81c779be410eb16a2"
     }
   ]
 }
