@@ -1,0 +1,10 @@
+{
+  "name": "now",
+  "description": "Observables for current time, hour, and day",
+  "version": "1.0.0",
+  "type": "utility",
+  "platform": "all",
+  "dependencies": [],
+  "imports": [],
+  "pro": false
+}
