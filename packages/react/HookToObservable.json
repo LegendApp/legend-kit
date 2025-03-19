@@ -1,0 +1,10 @@
+{
+  "name": "HookToObservable",
+  "description": "Convert a hook to an observable",
+  "version": "1.0.0",
+  "type": "utility",
+  "platform": "all",
+  "dependencies": [],
+  "imports": [],
+  "pro": false
+}

@@ -1,0 +1,10 @@
+{
+  "name": "windowDimensions",
+  "description": "Window dimensions as an observable",
+  "version": "1.0.0",
+  "type": "utility",
+  "platform": "rn",
+  "dependencies": [],
+  "imports": ["react/HookToObservable"],
+  "pro": false
+}
