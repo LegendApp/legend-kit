@@ -120,10 +120,17 @@ export function validatePackageFile(filePath: string): PackageMetadata | null {
     if (packageMetadata.imports) {
       for (const importPath of packageMetadata.imports) {
         const fullPath1 = path.join(packageDir, importPath + ".ts");
-        const fullPath2 = path.join(packageDir, "..", importPath + ".ts");
-        if (!fs.existsSync(fullPath1) && !fs.existsSync(fullPath2)) {
+        const fullPath2 = path.join(packageDir, importPath + ".tsx");
+        const fullPath3 = path.join(packageDir, "..", importPath + ".ts");
+        const fullPath4 = path.join(packageDir, "..", importPath + ".tsx");
+        if (
+          !fs.existsSync(fullPath1) &&
+          !fs.existsSync(fullPath2) &&
+          !fs.existsSync(fullPath3) &&
+          !fs.existsSync(fullPath4)
+        ) {
           console.error(
-            `❌ ${filePath}: Imported package "${importPath}" does not exist at ${fullPath1} or ${fullPath2}`,
+            `❌ ${filePath}: Imported package "${importPath}" does not exist at ${fullPath1} or ${fullPath2} or ${fullPath3} or ${fullPath4}`,
           );
           return null;
         }

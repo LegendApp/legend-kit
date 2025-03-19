@@ -44,9 +44,19 @@ function validatePackageImports(
 ): boolean {
   const packageDir = path.dirname(packageFile);
   const packageBaseName = path.basename(packageFile, ".json");
-  const implPath = path.join(packageDir, packageBaseName + ".ts");
-
-  if (!fs.existsSync(implPath)) {
+  const implPath1 = path.join(packageDir, packageBaseName + ".ts");
+  const implPath2 = path.join(packageDir, packageBaseName + ".tsx");
+  const implPath = fs.existsSync(implPath1)
+    ? implPath1
+    : fs.existsSync(implPath2)
+      ? implPath2
+      : null;
+  if (!implPath) {
+    console.error(
+      `❌ ${packageFile}: Missing implementation file`,
+      implPath1,
+      implPath2,
+    );
     return false; // This will be caught by the main validation
   }
 
