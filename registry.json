@@ -1,6 +1,21 @@
 {
-  "updatedAt": "2025-03-19T04:47:08.491Z",
+  "updatedAt": "2025-03-19T09:55:57.309Z",
   "packages": [
+    {
+      "name": "windowDimensions",
+      "version": "1.0.0",
+      "type": "utility",
+      "platform": "rn",
+      "dependencies": [],
+      "imports": [
+        "react/HookToObservable"
+      ],
+      "pro": false,
+      "description": "Window dimensions as an observable",
+      "dir": "react-native",
+      "file": "windowDimensions.tsx",
+      "sha": "b04f95ec27c125fac50b8c40c305c3d41c8e66ecb7dddefd4618920da1cc09da"
+    },
     {
       "name": "isWindowFocused$",
       "version": "1.0.0",
@@ -39,21 +54,6 @@
       "dir": "web",
       "file": "useElementIsScrolled.ts",
       "sha": "2a087220ea3e323aa1804d20e42905bd39f737005de11174c06b6237274907da"
-    },
-    {
-      "name": "windowDimensions",
-      "version": "1.0.0",
-      "type": "utility",
-      "platform": "rn",
-      "dependencies": [],
-      "imports": [
-        "react/HookToObservable"
-      ],
-      "pro": false,
-      "description": "Window dimensions as an observable",
-      "dir": "rn",
-      "file": "windowDimensions.tsx",
-      "sha": "b04f95ec27c125fac50b8c40c305c3d41c8e66ecb7dddefd4618920da1cc09da"
     },
     {
       "name": "now",
